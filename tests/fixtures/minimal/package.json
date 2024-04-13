@@ -9,7 +9,7 @@
     "templates"
   ],
   "dependencies": {
-    "create-create-app": "link:../../.."
+    "create-create-x": "link:../../.."
   },
   "license": "MIT"
 }

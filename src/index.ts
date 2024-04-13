@@ -212,7 +212,6 @@ export function printCommand(...commands: string[]) {
   console.log(chalk.gray('>', ...commands));
 }
 
-/** @see https://github.com/uetchy/create-create-app */
 export async function create(appName: string, options: Options) {
   epicfail(require.main!.filename, {
     assertExpected: (err) => err.name === 'CLIError',

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { resolve } = require('path');
-const { create } = require('create-create-app');
+const { create } = require('create-create-x');
 
 const templateRoot = resolve(__dirname, '..', 'templates');
 

@@ -7,9 +7,9 @@ import { test, expect } from 'vitest';
 
 const pkg = require('../package.json');
 
-const SCRIPT_PATH = resolve(__dirname, '..', pkg.bin['create-create-app']);
+const SCRIPT_PATH = resolve(__dirname, '..', pkg.bin['create-create-x']);
 const FIXTURE_PATH = join(__dirname, 'fixtures');
-const TMP_PREFIX = join(tmpdir(), 'create-create-app-');
+const TMP_PREFIX = join(tmpdir(), 'create-create-x-');
 
 const DEFAULT_ANSWERS = [
   '--description',
@@ -40,7 +40,7 @@ async function useFixture(projectName: string, opts: readonly string[]) {
 
 test('show usage', async () => {
   const { stdout } = await execa(SCRIPT_PATH, []);
-  expect(stdout).toBe('create-create-app <name>');
+  expect(stdout).toBe('create-create-x <name>');
 }, 300000);
 
 test('template', async () => {
@@ -124,7 +124,7 @@ test('create default project with pnpm', async () => {
     '"author": "Awesome Doe <awesome@example.com>",'
   );
   expect(newPackageJson).toContain('"license": "MIT"');
-  expect(newPackageJson).toContain('"create-create-app": "^');
+  expect(newPackageJson).toContain('"create-create-x": "^');
 
   const newSrcCli = readFileSync(`${tmpDir}/create-greet/src/cli.js`, 'utf-8');
   expect(newSrcCli).toContain('#!/usr/bin/env node');

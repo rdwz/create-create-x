@@ -1,7 +1,7 @@
 import { CLIError, printCommand } from '.';
 import { spawnPromise } from './fs';
 
-export type PackageManager = 'npm' | 'yarn' | 'pnpm';
+export type PackageManager = 'npm' | 'yarn' | 'pnpm' | 'bun';
 
 // License for `whichPm`
 // The MIT License (MIT)
@@ -48,6 +48,14 @@ export async function initPackage(
       process.chdir(rootDir);
       break;
     }
+    case 'bun': {
+      command = 'bun';
+      args = ['init', '-y'];
+      process.chdir(rootDir);
+    }
+    default: {
+      throw new CLIError("Unknown package manager!");
+    }
   }
 
   printCommand(command, ...args);
@@ -79,6 +87,14 @@ export async function installDeps(rootDir: string, pm: PackageManager) {
       command = 'pnpm';
       args = ['install', '--dir', rootDir];
       break;
+    }
+    case 'bun': {
+      command = 'bun';
+      args = ['install', '--cwd', rootDir];
+      break;
+    }
+    default: {
+      throw new CLIError("Unknown package manager!");
     }
   }
 
@@ -121,6 +137,14 @@ export async function addDeps(
       command = 'pnpm';
       args = ['add', '--dir', rootDir, ...deps, isDev ? '-D' : ''];
       break;
+    }
+    case "bun": {
+      command = "bun";
+      args = ['add', '--cwd', rootDir, ...deps, isDev ? '-D' : ''];
+      break;
+    }
+    default: {
+      throw new CLIError("Unknown package manager!");
     }
   }
 

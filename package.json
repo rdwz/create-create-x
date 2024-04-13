@@ -11,7 +11,9 @@
     "release": "release-it",
     "test": "run-p build typecheck && vitest --run",
     "tsup": "tsup src/index.ts src/cli.ts -d lib",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "contrib:check": "all-contributors check",
+    "contrib:generate": "all-contributors generate"
   },
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
@@ -42,6 +44,7 @@
     "@types/cross-spawn": "^6.0.2",
     "@types/node": "^18.0.0",
     "@types/uuid": "^8.3.4",
+    "all-contributors-cli": "^6.26.1",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "mdmod": "^2.0.0",

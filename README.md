@@ -402,14 +402,17 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
-  <tr>
-    <td align="center"><a href="https://uechi.io/"><img src="https://avatars0.githubusercontent.com/u/431808?v=4?s=100" width="100px;" alt=""/><br /><sub><b>uetchy</b></sub></a><br /><a href="https://github.com/uetchy/create-create-app/commits?author=uetchy" title="Code">💻</a> <a href="https://github.com/uetchy/create-create-app/commits?author=uetchy" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://vivliostyle.org/"><img src="https://avatars1.githubusercontent.com/u/3324737?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Shinyu Murakami</b></sub></a><br /><a href="https://github.com/uetchy/create-create-app/commits?author=MurakamiShinyu" title="Code">💻</a></td>
-    <td align="center"><a href="http://twitter.com/takahashim"><img src="https://avatars2.githubusercontent.com/u/10401?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Masayoshi Takahashi</b></sub></a><br /><a href="https://github.com/uetchy/create-create-app/commits?author=takahashim" title="Code">💻</a></td>
-    <td align="center"><a href="http://alexanderliu.com"><img src="https://avatars.githubusercontent.com/u/41758627?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alexander Liu</b></sub></a><br /><a href="https://github.com/uetchy/create-create-app/commits?author=alexanderl19" title="Code">💻</a></td>
-    <td align="center"><a href="https://vilja.me"><img src="https://avatars.githubusercontent.com/u/24564003?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Vilja</b></sub></a><br /><a href="https://github.com/uetchy/create-create-app/commits?author=iVilja" title="Code">💻</a></td>
-    <td align="center"><a href="https://lucaslabs.tech/"><img src="https://avatars.githubusercontent.com/u/12949236?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lucas Colombo</b></sub></a><br /><a href="https://github.com/uetchy/create-create-app/commits?author=lucas-labs" title="Code">💻</a></td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://uechi.io/"><img src="https://avatars0.githubusercontent.com/u/431808?v=4?s=100" width="100px;" alt="uetchy"/><br /><sub><b>uetchy</b></sub></a><br /><a href="https://github.com/painfulexistence/create-create-x/commits?author=uetchy" title="Code">💻</a> <a href="https://github.com/painfulexistence/create-create-x/commits?author=uetchy" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://vivliostyle.org/"><img src="https://avatars1.githubusercontent.com/u/3324737?v=4?s=100" width="100px;" alt="Shinyu Murakami"/><br /><sub><b>Shinyu Murakami</b></sub></a><br /><a href="https://github.com/painfulexistence/create-create-x/commits?author=MurakamiShinyu" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://twitter.com/takahashim"><img src="https://avatars2.githubusercontent.com/u/10401?v=4?s=100" width="100px;" alt="Masayoshi Takahashi"/><br /><sub><b>Masayoshi Takahashi</b></sub></a><br /><a href="https://github.com/painfulexistence/create-create-x/commits?author=takahashim" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://alexanderliu.com"><img src="https://avatars.githubusercontent.com/u/41758627?v=4?s=100" width="100px;" alt="Alexander Liu"/><br /><sub><b>Alexander Liu</b></sub></a><br /><a href="https://github.com/painfulexistence/create-create-x/commits?author=alexanderl19" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://vilja.me"><img src="https://avatars.githubusercontent.com/u/24564003?v=4?s=100" width="100px;" alt="Vilja"/><br /><sub><b>Vilja</b></sub></a><br /><a href="https://github.com/painfulexistence/create-create-x/commits?author=iVilja" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://lucaslabs.tech/"><img src="https://avatars.githubusercontent.com/u/12949236?v=4?s=100" width="100px;" alt="Lucas Colombo"/><br /><sub><b>Lucas Colombo</b></sub></a><br /><a href="https://github.com/painfulexistence/create-create-x/commits?author=lucas-labs" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://twitter.com/DevLucidum/"><img src="https://avatars.githubusercontent.com/u/30090734?v=4?s=100" width="100px;" alt="Loïc Chen"/><br /><sub><b>Loïc Chen</b></sub></a><br /><a href="https://github.com/painfulexistence/create-create-x/commits?author=painfulexistence" title="Code">💻</a></td>
+    </tr>
+  </tbody>
 </table>
 
 <!-- markdownlint-restore -->

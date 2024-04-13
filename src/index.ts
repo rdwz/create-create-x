@@ -227,18 +227,18 @@ export async function create(appName: string, options: Options) {
     after,
     caveat,
 
-    defaultDescription = 'description',
-    defaultAuthor = gitUser.name ?? 'Your name',
-    defaultEmail = gitUser.email ?? 'Your email',
+    defaultDescription = '',
+    defaultAuthor = gitUser.name ?? '',
+    defaultEmail = gitUser.email ?? '',
     defaultTemplate = 'default',
     defaultLicense = 'MIT',
     defaultPackageManager = undefined, // undefined by default, we'll try to guess pm manager later
 
-    promptForDescription = true,
-    promptForAuthor = true,
-    promptForEmail = true,
-    promptForTemplate = false,
-    promptForLicense = true,
+    promptForDescription = false,
+    promptForAuthor = false,
+    promptForEmail = false,
+    promptForTemplate = true,
+    promptForLicense = false,
     promptForPackageManager = false,
 
     skipGitInit = false,

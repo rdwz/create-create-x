@@ -32,7 +32,7 @@ After the build, run ${chalk.cyan('node dist/cli.js <name>')} to test your app.
   text += `
 Read the docs for the further information:
 ${chalk.yellow(
-  'https://github.com/uetchy/create-create-app/blob/master/README.md'
+  'https://github.com/painfulexistence/create-create-x/blob/main/README.md'
 )}`;
 
   return text;

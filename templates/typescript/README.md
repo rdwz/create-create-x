@@ -2,7 +2,7 @@
 
 {{description}}
 
-> created by [create-create-app](https://github.com/uetchy/create-create-app).
+> created by [create-create-x](https://github.com/painfulexistence/create-create-x).
 
 ## Usage
 
@@ -33,4 +33,4 @@ npx {{lower name}} <name>
 - \{{year}} => {{year}}
 - \{{custom}} => {{custom}} (undefined until it is defined in `extra` field in `create` function arguments)
 
-See https://github.com/uetchy/create-create-app#template for the further details.
+See https://github.com/painfulexistence/create-create-x#template for the further details.

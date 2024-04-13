@@ -10,7 +10,7 @@ This is a caveat!
 You can change this in \`src/cli.js\`.
 `;
 
-// See https://github.com/uetchy/create-create-app/blob/master/README.md for other options.
+// See https://github.com/painfulexistence/create-create-x/blob/main/README.md for other options.
 
 create('{{kebab name}}', {
   templateRoot,

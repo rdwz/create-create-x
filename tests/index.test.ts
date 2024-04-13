@@ -111,7 +111,7 @@ test('create default project with pnpm', async () => {
   expect(newReadMe).toContain('- {{author}} => Awesome Doe');
   expect(newReadMe).toContain('- {{email}} => awesome@example.com');
   expect(newReadMe).toContain(
-    'See https://github.com/uetchy/create-create-app#template for the further details.'
+    'See https://github.com/painfulexistence/create-create-x#template for the further details.'
   );
 
   const newPackageJson = readFileSync(

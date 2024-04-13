@@ -3,10 +3,10 @@
 ## Development Guide
 
 ```bash
-git clone https://github.com/uetchy/create-create-app.git && cd create-create-app
-npm install
-npm run dev
-node lib/cli.js test
+git clone https://github.com/painfulexistence/create-create-x.git && cd create-create-x
+bun
+bun run dev
+bun run lib/cli.js test
 ```
 
 ## Release Guide (Maintainers only)

@@ -1,12 +1,12 @@
 <div align="center">
-<h1 align="center">✨ Create Create App</h1>
-<h6>Create your own `create-something` app.</h6>
+<h1 align="center">✨ Create Create X</h1>
+<h6>Create your own `create-something` app. A fork of the awesome `create-create-app`</h6>
 <br/>
-<img src="https://raw.githubusercontent.com/uetchy/create-create-app/master/.github/assets/ss1.png" alt="screenshot"/>
+<img src="https://raw.githubusercontent.com/painfulexistence/create-create-x/main/.github/assets/ss1.png" alt="screenshot"/>
 <br/><br/>
-<a href="https://npmjs.org/package/create-create-app"><img src="https://img.shields.io/npm/v/create-create-app.svg"></a>
+<!-- <a href="https://npmjs.org/package/create-create-app"><img src="https://img.shields.io/npm/v/create-create-app.svg"></a>
 <a href="https://npmjs.org/package/create-create-app"><img src="https://badgen.net/npm/dt/create-create-app"></a>
-<a href="https://github.com/uetchy/create-create-app/actions?workflow=test"><img src="https://github.com/uetchy/create-create-app/workflows/test/badge.svg"/></a>
+<a href="https://github.com/uetchy/create-create-app/actions?workflow=test"><img src="https://github.com/uetchy/create-create-app/workflows/test/badge.svg"/></a> -->
 </div>
 
 ## Why?

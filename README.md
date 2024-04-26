@@ -4,9 +4,9 @@
 <br/>
 <img src="https://raw.githubusercontent.com/painfulexistence/create-create-x/main/.github/assets/ss1.png" alt="screenshot"/>
 <br/><br/>
-<!-- <a href="https://npmjs.org/package/create-create-app"><img src="https://img.shields.io/npm/v/create-create-app.svg"></a>
-<a href="https://npmjs.org/package/create-create-app"><img src="https://badgen.net/npm/dt/create-create-app"></a>
-<a href="https://github.com/uetchy/create-create-app/actions?workflow=test"><img src="https://github.com/uetchy/create-create-app/workflows/test/badge.svg"/></a> -->
+<a href="https://npmjs.org/package/create-create-x"><img src="https://img.shields.io/npm/v/create-create-x.svg"></a>
+<a href="https://npmjs.org/package/create-create-x"><img src="https://badgen.net/npm/dt/create-create-x"></a>
+<a href="https://github.com/painfulexistence/create-create-x/actions?workflow=test"><img src="https://github.com/painfulexistence/create-create-x/workflows/test/badge.svg"/></a>
 </div>
 
 ## Why?
@@ -17,55 +17,14 @@
 
 ## Table of contents
 
-<!-- START mdmod {use: 'toc'} -->
-
-
-- [✨ Create Create App](#-create-create-app)
+- [✨ Create Create X](#-create-create-x)
   - [Why?](#why)
   - [Table of contents](#table-of-contents)
   - [Quick Start](#quick-start)
-    - [1. Bootstrap your project](#1-bootstrap-your-project)
-    - [2. Add and edit template files](#2-add-and-edit-template-files)
-    - [3. Build the app (TypeScript only)](#3-build-the-app-typescript-only)
-    - [4. Publish package to npm](#4-publish-package-to-npm)
-    - [5. PROFIT](#5-profit)
-  - [Template](#template)
-    - [Advanced: Multiple templates](#advanced-multiple-templates)
-    - [Helper functions](#helper-functions)
-      - [`upper`](#upper)
-      - [`lower`](#lower)
-      - [`capital`](#capital)
-      - [`camel`](#camel)
-      - [`snake`](#snake)
-      - [`kebab`](#kebab)
-      - [`space`](#space)
-      - [`uuid`](#uuid)
-  - [Config](#config)
-    - [templateRoot (required)](#templateroot-required)
-    - [modifyName (default: `undefined`)](#modifyname-default-undefined)
-    - [extra (default: `undefined`)](#extra-default-undefined)
-    - [defaultDescription (default: `description`)](#defaultdescription-default-description)
-    - [defaultAuthor (default: `user.name` in `~/.gitconfig` otherwise `Your name`)](#defaultauthor-default-username-in-gitconfig-otherwise-your-name)
-    - [defaultEmail (default: `user.email` in `~/.gitconfig` otherwise `Your email`)](#defaultemail-default-useremail-in-gitconfig-otherwise-your-email)
-    - [defaultTemplate (default: `default`)](#defaulttemplate-default-default)
-    - [defaultLicense (default: `MIT`)](#defaultlicense-default-mit)
-    - [defaultPackageManager (default: `undefined`)](#defaultpackagemanager-default-undefined)
-    - [promptForDescription (default: `true`)](#promptfordescription-default-true)
-    - [promptForAuthor (default: `true`)](#promptforauthor-default-true)
-    - [promptForEmail (default: `true`)](#promptforemail-default-true)
-    - [promptForTemplate (default: `false`)](#promptfortemplate-default-false)
-    - [promptForLicense (default: `true`)](#promptforlicense-default-true)
-    - [promptForPackageManager (default: `false`)](#promptforpackagemanager-default-false)
-    - [skipGitInit (default: `false`)](#skipgitinit-default-false)
-    - [skipNpmInstall (default: `false`)](#skipnpminstall-default-false)
-    - [after (default: `undefined`)](#after-default-undefined)
-    - [caveat (default: `undefined`)](#caveat-default-undefined)
-    - [`AfterHookOptions`](#afterhookoptions)
-  - [Showcase](#showcase)
-  - [Contribution](#contribution)
+  - [Making Your Templates](#template)
+  - [Configuring Your Create X App](#config)
+  - [Contributing](#contribution)
     - [Contributors ✨](#contributors-)
-
-<!-- END mdmod -->
 
 ## Quick Start
 
@@ -74,14 +33,17 @@ Let's create `create-greet` package in five steps.
 ### 1. Bootstrap your project
 
 ```shell
-npx create-create-app greet  # simplest route
-npm init create-app greet    # requires npm 6+
-yarn create create-app greet # requires Yarn 0.25+
+# Any of the following commands will work
+npx create-create-x@latest greet # recommended
+npm init create-x greet
+yarn create create-x greet
+pnpm create create-x greet
+bun create create-x greet
 ```
 
 You will then be asked about your project.
 
-![screenshot](https://raw.githubusercontent.com/uetchy/create-create-app/master/.github/assets/ss1.png)
+![screenshot](https://raw.githubusercontent.com/painfulexistence/create-create-x/main/.github/assets/ss1.png)
 
 ### 2. Add and edit template files
 
@@ -101,17 +63,22 @@ Run `npm run build` or `yarn build` to transpile TypeScript code into JavaScript
 
 Run `npm publish` or `yarn publish` to publish your `create-greet` app to npm.
 
-### 5. PROFIT
+### 5. Use the published package
 
-```bash
+```shell
+# Any of the following commands will work
 npx create-greet ohayo
 npm init greet ohayo
 yarn create greet ohayo
+pnpm create greet ohayo
+bun create greet ohayo
 ```
 
-![screenshot](https://raw.githubusercontent.com/uetchy/create-create-app/master/.github/assets/ss2.png)
+![screenshot](https://raw.githubusercontent.com/painfulexistence/create-create-x/main/.github/assets/ss2.png)
 
-## Template
+## Making Your Templates
+
+### Single Template
 
 Edit files inside `templates/default`. Every file name, directory name, and a text file will be processed through Handlebars template engine to replace all template strings with the respective value.
 
@@ -127,7 +94,7 @@ Built-in variables are:
 - `{{template}} selected template name (e.g. `typescript`)
 - `{{packageManager}} package manager (e.g. `yarn`)
 
-### Advanced: Multiple templates
+### Multiple templates
 
 Creates a new directory in the location defined by `templateRoot`. It can be accessed via `--template` flag (e.g. `create-something <name> --template <template>`).
 You might want to set `promptForTemplate` to `true` to explicitly ask the user to choose a template during the initialization phase. If `promptForTemplate` is `false`, which is the default behavior, `default` template will be used unless the user explicitly selects a template via `--template` cli flag.
@@ -188,28 +155,28 @@ Generates unique UUID string.
 {{upper (uuid)}} // => A5DF7100-DA46-47A6-907E-AFE861F48B39
 ```
 
-## Config
+## Configuring Your Create X App
 
 The app configuration can be found in `src/cli.js` (or `src/cli.ts` if you choose the `typescript` template).
 
 ```ts
-import { resolve } from 'path';
-import { create } from 'create-create-app';
+import { resolve } from "path";
+import { create } from "create-create-x";
 
-create('create-greet', {
-  templateRoot: resolve(__dirname, '..', 'templates'),
+create("create-greet", {
+  templateRoot: resolve(__dirname, "..", "templates"),
   extra: {
     language: {
-      type: 'input',
-      describe: 'greeting language',
-      default: 'en',
-      prompt: 'if-no-arg',
+      type: "input",
+      describe: "greeting language",
+      default: "en",
+      prompt: "if-no-arg",
     },
   },
   modifyName: (name) => `package-prefix-${name}`,
   after: async ({ installNpmPackage }) => {
-    console.log('Installing additional packages');
-    await installNpmPackage('chalk');
+    console.log("Installing additional packages");
+    await installNpmPackage("chalk");
   },
   caveat: `Your app has been created successfully!`,
 });
@@ -227,7 +194,7 @@ Modify `name` property.
 
 ```js
 {
-  modifyName: (name) => (name.startsWith('create-') ? name : `create-${name}`);
+  modifyName: (name) => (name.startsWith("create-") ? name : `create-${name}`);
 }
 ```
 
@@ -314,25 +281,25 @@ Define after-hook script to be executed right after the initialization process.
 The caveat message will be shown after the entire process is completed.
 
 ```js
-create('create-greet', {
-  caveat: 'Happy coding!',
+create("create-greet", {
+  caveat: "Happy coding!",
 });
 ```
 
 ```js
-create('create-greet', {
+create("create-greet", {
   caveat: ({ answers }) => `Run -> cd ${answers.name} && make`,
 });
 ```
 
 ```js
-create('create-greet', {
+create("create-greet", {
   extra: {
     plugin: {
-      type: 'input',
-      describe: 'plugin to be used in your project',
-      default: 'some-plugin',
-      prompt: 'if-no-arg',
+      type: "input",
+      describe: "plugin to be used in your project",
+      default: "some-plugin",
+      prompt: "if-no-arg",
     },
   },
   after: async ({ installNpmPackage, answers }) => {
@@ -341,7 +308,7 @@ create('create-greet', {
     await installNpmPackage(plugin);
   },
   caveat: ({ packageDir }) => {
-    console.log('Next step:');
+    console.log("Next step:");
     console.log(`cd ${packageDir} && npm start`);
   },
 });
@@ -373,24 +340,7 @@ create('create-greet', {
 }
 ```
 
-## Showcase
-
-List of amazing projects built with `create-create-app`.
-
-- [create-create-app](https://github.com/uetchy/create-create-app) - Yes, `create-create-app` uses `create-create-app` itself to generate `create-<app>` template!
-- [create-book](https://github.com/vivliostyle/create-book) - Fast & frictionless book template generator.
-- [create-vivliostyle-theme](https://github.com/vivliostyle/themes/tree/master/packages/create-vivliostyle-theme) - Create Vivliostyle theme at ease.
-- [create-alfred-workflow](https://github.com/uetchy/create-alfred-workflow) - Create Alfred Workflow.
-- [create-catalyst](https://github.com/dvalinotti/create-catalyst) - NPM create-app command for scaffolding a new Web Components project with GitHub's Catalyst.
-- [create-lit](https://github.com/litelement-dev/create-lit) - Create simple-starter-kit `lit` applications.
-- [create-vscode-extension](https://github.com/heybereket/create-vscode-extension) - Create Visual Studio Code extensions in one command
-- [create-express-app](https://github.com/rocambille/create-express-app) - Set up a modern express app by running one command.
-- [tsnt](https://github.com/alii/tsnt) - 🚀An ESM node package template with ESLint, Prettier & TypeScript built in. Powered by esbuild.
-- [create-strawberry](https://github.com/strawberry-discord/create-strawberry) - npm template initializer for strawberry.js
-
-> Missing your project? Send a PR :)
-
-## Contribution
+## Contributing
 
 PRs are always welcomed.
 

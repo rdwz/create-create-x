@@ -1,7 +1,7 @@
-import { CLIError, printCommand } from '.';
-import { spawnPromise } from './fs';
+import { CLIError, printCommand } from ".";
+import { spawnPromise } from "./fs";
 
-export type PackageManager = 'npm' | 'yarn' | 'pnpm' | 'bun';
+export type PackageManager = "npm" | "yarn" | "pnpm" | "bun";
 
 // License for `whichPm`
 // The MIT License (MIT)
@@ -9,11 +9,11 @@ export type PackageManager = 'npm' | 'yarn' | 'pnpm' | 'bun';
 // https://github.com/zkochan/packages/tree/main/which-pm-runs
 export function whichPm(): PackageManager {
   if (!process.env.npm_config_user_agent) {
-    return 'npm';
+    return "npm";
   }
 
-  const pmSpec = process.env.npm_config_user_agent.split(' ')[0];
-  const separatorPos = pmSpec.lastIndexOf('/');
+  const pmSpec = process.env.npm_config_user_agent.split(" ")[0];
+  const separatorPos = pmSpec.lastIndexOf("/");
   const name = pmSpec.substring(0, separatorPos);
 
   return name as PackageManager;
@@ -31,27 +31,28 @@ export async function initPackage(
   let args: string[];
 
   switch (pm) {
-    case 'npm': {
-      command = 'npm';
-      args = ['init', '-y'];
+    case "npm": {
+      command = "npm";
+      args = ["init", "-y"];
       process.chdir(rootDir);
       break;
     }
-    case 'yarn': {
-      command = 'yarnpkg';
-      args = ['init', '-y', '--cwd', rootDir];
+    case "yarn": {
+      command = "yarnpkg";
+      args = ["init", "-y", "--cwd", rootDir];
       break;
     }
-    case 'pnpm': {
-      command = 'pnpm';
-      args = ['init', '-y'];
+    case "pnpm": {
+      command = "pnpm";
+      args = ["init", "-y"];
       process.chdir(rootDir);
       break;
     }
-    case 'bun': {
-      command = 'bun';
-      args = ['init', '-y'];
+    case "bun": {
+      command = "bun";
+      args = ["init", "-y"];
       process.chdir(rootDir);
+      break;
     }
     default: {
       throw new CLIError("Unknown package manager!");
@@ -61,7 +62,7 @@ export async function initPackage(
   printCommand(command, ...args);
 
   try {
-    await spawnPromise(command, args, { stdio: 'inherit', shell: true });
+    await spawnPromise(command, args, { stdio: "inherit", shell: true });
   } catch (err) {
     throw new CLIError(`Failed to install dependencies: ${err}`);
   }
@@ -72,25 +73,25 @@ export async function installDeps(rootDir: string, pm: PackageManager) {
   let args: string[];
 
   switch (pm) {
-    case 'npm': {
-      command = 'npm';
-      args = ['install'];
+    case "npm": {
+      command = "npm";
+      args = ["install"];
       process.chdir(rootDir);
       break;
     }
-    case 'yarn': {
-      command = 'yarnpkg';
-      args = ['install', '--cwd', rootDir];
+    case "yarn": {
+      command = "yarnpkg";
+      args = ["install", "--cwd", rootDir];
       break;
     }
-    case 'pnpm': {
-      command = 'pnpm';
-      args = ['install', '--dir', rootDir];
+    case "pnpm": {
+      command = "pnpm";
+      args = ["install", "--dir", rootDir];
       break;
     }
-    case 'bun': {
-      command = 'bun';
-      args = ['install', '--cwd', rootDir];
+    case "bun": {
+      command = "bun";
+      args = ["install", "--cwd", rootDir];
       break;
     }
     default: {
@@ -101,7 +102,7 @@ export async function installDeps(rootDir: string, pm: PackageManager) {
   printCommand(command, ...args);
 
   try {
-    await spawnPromise(command, args, { stdio: 'inherit', shell: true });
+    await spawnPromise(command, args, { stdio: "inherit", shell: true });
   } catch (err) {
     throw new CLIError(`Failed to install dependencies: ${err}`);
   }
@@ -122,25 +123,25 @@ export async function addDeps(
   let args: string[];
 
   switch (pm) {
-    case 'npm': {
-      command = 'npm';
-      args = ['install', isDev ? '-D' : '-S', ...deps];
+    case "npm": {
+      command = "npm";
+      args = ["install", isDev ? "-D" : "-S", ...deps];
       process.chdir(rootDir);
       break;
     }
-    case 'yarn': {
-      command = 'yarnpkg';
-      args = ['add', '--cwd', rootDir, ...deps, isDev ? '-D' : ''];
+    case "yarn": {
+      command = "yarnpkg";
+      args = ["add", "--cwd", rootDir, ...deps, isDev ? "-D" : ""];
       break;
     }
-    case 'pnpm': {
-      command = 'pnpm';
-      args = ['add', '--dir', rootDir, ...deps, isDev ? '-D' : ''];
+    case "pnpm": {
+      command = "pnpm";
+      args = ["add", "--dir", rootDir, ...deps, isDev ? "-D" : ""];
       break;
     }
     case "bun": {
       command = "bun";
-      args = ['add', '--cwd', rootDir, ...deps, isDev ? '-D' : ''];
+      args = ["add", "--cwd", rootDir, ...deps, isDev ? "-D" : ""];
       break;
     }
     default: {
@@ -151,7 +152,7 @@ export async function addDeps(
   printCommand(command, ...args);
 
   try {
-    await spawnPromise(command, args, { stdio: 'inherit', shell: true });
+    await spawnPromise(command, args, { stdio: "inherit", shell: true });
   } catch (err) {
     throw new CLIError(`Failed to add dependencies: ${err}`);
   }

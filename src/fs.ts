@@ -1,7 +1,7 @@
-import { CommonSpawnOptions } from 'child_process';
-import { spawn } from 'cross-spawn';
-import fs from 'fs';
-import path from 'path';
+import type { CommonSpawnOptions } from "node:child_process";
+import { spawn } from "cross-spawn";
+import fs from "node:fs";
+import path from "node:path";
 
 export function spawnPromise(
   command: string,
@@ -9,8 +9,8 @@ export function spawnPromise(
   options: CommonSpawnOptions = {}
 ): Promise<number> {
   return new Promise((resolve, reject) => {
-    const child = spawn(command, args, { stdio: 'inherit', ...options });
-    child.on('close', (code) => {
+    const child = spawn(command, args, { stdio: "inherit", ...options });
+    child.on("close", (code) => {
       if (code !== 0) {
         return reject(code);
       }
@@ -26,10 +26,10 @@ export function exists(filePath: string, baseDir: string): boolean {
 export function isOccupied(dirname: string) {
   try {
     return (
-      fs.readdirSync(dirname).filter((s) => !s.startsWith('.')).length !== 0
+      fs.readdirSync(dirname).filter((s) => !s.startsWith(".")).length !== 0
     );
   } catch (err: any) {
-    if (err?.code === 'ENOENT') {
+    if (err?.code === "ENOENT") {
       return false;
     }
     throw err;

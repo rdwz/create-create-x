@@ -1,23 +1,23 @@
-import chalk from 'chalk';
-import { epicfail } from 'epicfail';
-import execa, { CommonOptions, ExecaChildProcess } from 'execa';
-import { existsSync, writeFileSync } from 'fs';
+import chalk from "chalk";
+import { epicfail } from "epicfail";
+import execa, { type CommonOptions, type ExecaChildProcess } from "execa";
+import { existsSync, writeFileSync } from "node:fs";
 import {
   availableLicenses as getAvailableLicenses,
   makeLicenseSync,
-} from 'license.js';
-import path, { join, resolve } from 'path';
-import yargsInteractive, { OptionData } from 'yargs-interactive';
-import { exists, isOccupied } from './fs';
-import { getGitUser, initGit } from './git';
+} from "license.js";
+import path, { join, resolve } from "node:path";
+import yargsInteractive, { type OptionData } from "yargs-interactive";
+import { exists, isOccupied } from "./fs";
+import { getGitUser, initGit } from "./git";
 import {
   addDeps,
   initPackage,
   installDeps,
-  PackageManager,
+  type PackageManager,
   whichPm,
-} from './npm';
-import { copy, getAvailableTemplates } from './template';
+} from "./npm";
+import { copy, getAvailableTemplates } from "./template";
 
 export interface Option {
   [key: string]: OptionData | { default: boolean };
@@ -204,17 +204,17 @@ export interface AfterHookOptions {
 export class CLIError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = 'CLIError';
+    this.name = "CLIError";
   }
 }
 
 export function printCommand(...commands: string[]) {
-  console.log(chalk.gray('>', ...commands));
+  console.log(chalk.gray(">", ...commands));
 }
 
 export async function create(appName: string, options: Options) {
   epicfail(require.main!.filename, {
-    assertExpected: (err) => err.name === 'CLIError',
+    assertExpected: (err) => err.name === "CLIError",
   });
 
   const gitUser = await getGitUser();
@@ -226,11 +226,11 @@ export async function create(appName: string, options: Options) {
     after,
     caveat,
 
-    defaultDescription = '',
-    defaultAuthor = gitUser.name ?? '',
-    defaultEmail = gitUser.email ?? '',
-    defaultTemplate = 'default',
-    defaultLicense = 'MIT',
+    defaultDescription = "",
+    defaultAuthor = gitUser.name ?? "",
+    defaultEmail = gitUser.email ?? "",
+    defaultTemplate = "default",
+    defaultLicense = "MIT",
     defaultPackageManager = undefined, // undefined by default, we'll try to guess pm manager later
 
     promptForDescription = false,
@@ -251,7 +251,7 @@ export async function create(appName: string, options: Options) {
   }
 
   // configure package name and root direcotry
-  const useCurrentDir = firstArg === '.';
+  const useCurrentDir = firstArg === ".";
 
   const name: string = useCurrentDir
     ? path.basename(process.cwd())
@@ -270,79 +270,79 @@ export async function create(appName: string, options: Options) {
     throw new CLIError(`No template found`);
   }
 
-  const availableLicenses = [...getAvailableLicenses(), 'UNLICENSED'];
+  const availableLicenses = [...getAvailableLicenses(), "UNLICENSED"];
 
   const isMultipleTemplates = availableTemplates.length > 1;
 
   const yargsOption = {
     interactive: { default: true },
     description: {
-      type: 'input',
-      describe: 'Description',
+      type: "input",
+      describe: "Description",
       default: defaultDescription,
-      prompt: promptForDescription ? 'if-no-arg' : 'never',
+      prompt: promptForDescription ? "if-no-arg" : "never",
     },
     author: {
-      type: 'input',
-      describe: 'Author name',
+      type: "input",
+      describe: "Author name",
       default: defaultAuthor,
-      prompt: promptForAuthor ? 'if-no-arg' : 'never',
+      prompt: promptForAuthor ? "if-no-arg" : "never",
     },
     email: {
-      type: 'input',
-      describe: 'Author email',
+      type: "input",
+      describe: "Author email",
       default: defaultEmail,
-      prompt: promptForEmail ? 'if-no-arg' : 'never',
+      prompt: promptForEmail ? "if-no-arg" : "never",
     },
     template: {
-      type: 'list',
-      describe: 'Template',
+      type: "list",
+      describe: "Template",
       default: defaultTemplate,
-      prompt: isMultipleTemplates && promptForTemplate ? 'if-no-arg' : 'never',
+      prompt: isMultipleTemplates && promptForTemplate ? "if-no-arg" : "never",
       choices: availableTemplates,
     },
     license: {
-      type: 'list',
-      describe: 'License',
+      type: "list",
+      describe: "License",
       choices: availableLicenses,
       default: defaultLicense,
-      prompt: promptForLicense ? 'if-no-arg' : 'never',
+      prompt: promptForLicense ? "if-no-arg" : "never",
     },
-    'node-pm': {
-      type: 'list',
-      describe: 'Package manager to use for installing packages from npm',
-      choices: ['npm', 'yarn', 'pnpm'],
+    "node-pm": {
+      type: "list",
+      describe: "Package manager to use for installing packages from npm",
+      choices: ["npm", "yarn", "pnpm"],
       default: defaultPackageManager, // undefined by default, we'll try to guess pm later
-      prompt: promptForPackageManager ? 'if-no-arg' : 'never',
+      prompt: promptForPackageManager ? "if-no-arg" : "never",
     },
-    'skip-git': {
-      type: 'confirm',
-      describe: 'Skip initializing git repository',
-      prompt: 'never',
+    "skip-git": {
+      type: "confirm",
+      describe: "Skip initializing git repository",
+      prompt: "never",
     },
-    'skip-install': {
-      type: 'confirm',
-      describe: 'Skip installing package dependencies',
-      prompt: 'never',
+    "skip-install": {
+      type: "confirm",
+      describe: "Skip installing package dependencies",
+      prompt: "never",
     },
     ...extraOptions,
   };
 
   const args = (await yargsInteractive()
-    .usage('$0 <name> [args]')
+    .usage("$0 <name> [args]")
     .interactive(yargsOption as any)) as Record<keyof typeof yargsOption, any>;
 
-  const template = args['template'];
+  const template = args["template"];
   const templateDir = resolve(templateRoot, template);
 
   if (!existsSync(templateDir)) {
-    throw new CLIError('No template found');
+    throw new CLIError("No template found");
   }
 
   // guess which package manager to use
-  const packageManager = args['node-pm'] ?? whichPm();
+  const packageManager = args["node-pm"] ?? whichPm();
 
-  const ignoredProps = ['name', 'interactive', 'node-pm', 'nodePm'];
+  const ignoredProps = ["name", "interactive", "node-pm", "nodePm"];
   const filteredArgs = Object.entries<string>(args)
     .filter((arg) => arg[0].match(/^[^$_]/) && !ignoredProps.includes(arg[0]))
     .reduce(
@@ -353,7 +353,7 @@ export async function create(appName: string, options: Options) {
     );
 
   const year = new Date().getFullYear();
-  const contact = toContact(args['author'], args['email']);
+  const contact = toContact(args["author"], args["email"]);
 
   // construct answers
   const answers = {
@@ -377,23 +377,23 @@ export async function create(appName: string, options: Options) {
 
   // create license file
   try {
-    const license = makeLicenseSync(args['license'], {
+    const license = makeLicenseSync(args["license"], {
       year,
       project: name,
       description: args.description,
-      organization: toContact(args['author'], args['email']),
+      organization: toContact(args["author"], args["email"]),
     });
     const licenseText =
-      (license.header ?? '') + license.text + (license.warranty ?? '');
-    writeFileSync(resolve(packageDir, 'LICENSE'), licenseText);
+      (license.header ?? "") + license.text + (license.warranty ?? "");
+    writeFileSync(resolve(packageDir, "LICENSE"), licenseText);
   } catch (e) {
     // do not generate LICENSE
   }
 
   // init git if option skipGitInit or arg --skip-git are not set
-  if (!(skipGitInit || args['skip-git'])) {
+  if (!(skipGitInit || args["skip-git"])) {
     try {
-      console.log('\nInitializing a git repository');
+      console.log("\nInitializing a git repository");
       await initGit(packageDir);
     } catch (err: any) {
       if (err?.exitCode == 127) return; // no git available
@@ -405,7 +405,7 @@ export async function create(appName: string, options: Options) {
     pkg: string | string[],
     isDev: boolean = false
   ): Promise<void> => {
-    if (!existsSync(join(packageDir, 'package.json'))) {
+    if (!existsSync(join(packageDir, "package.json"))) {
       await initPackage(packageDir, { pm: packageManager });
     }
 
@@ -418,8 +418,8 @@ export async function create(appName: string, options: Options) {
   // run Node.js related tasks only if `package.json` does exist in the package root
   // and skipNpmInstall is not falsy
   const installDepsOnCreation =
-    exists('package.json', packageDir) &&
-    !(skipNpmInstall || args['skip-install']);
+    exists("package.json", packageDir) &&
+    !(skipNpmInstall || args["skip-install"]);
 
   if (installDepsOnCreation) {
     console.log(`\nInstalling dependencies using ${packageManager}`);
@@ -428,10 +428,10 @@ export async function create(appName: string, options: Options) {
 
   // setup afterHookOptions
   const run = (command: string, options: CommonOptions<string> = {}) => {
-    const [script, ...scriptArgs] = command.split(' ');
+    const [script, ...scriptArgs] = command.split(" ");
 
     return execa(script, scriptArgs, {
-      stdio: 'inherit',
+      stdio: "inherit",
       cwd: packageDir,
       ...options,
     });
@@ -461,10 +461,10 @@ export async function create(appName: string, options: Options) {
   // show caveat
   if (caveat) {
     switch (typeof caveat) {
-      case 'string':
+      case "string":
         console.log(caveat);
         break;
-      case 'function':
+      case "function":
         const response = await Promise.resolve(caveat(hookOptions));
         if (response) {
           console.log(response);
@@ -476,5 +476,5 @@ export async function create(appName: string, options: Options) {
 }
 
 function toContact(author: string, email?: string) {
-  return `${author}${email ? ` <${email}>` : ''}`;
+  return `${author}${email ? ` <${email}>` : ""}`;
 }

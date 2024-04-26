@@ -1,66 +1,66 @@
-import fs from 'fs';
-import globby from 'globby';
-import Handlebars from 'handlebars';
-import isUtf8 from 'is-utf8';
-import path, { sep } from 'path';
-import slash from 'slash';
-import { v4 as uuidv4 } from 'uuid';
-import { Answers } from '.';
+import fs from "node:fs";
+import globby from "globby";
+import Handlebars from "handlebars";
+import isUtf8 from "is-utf8";
+import path, { sep } from "node:path";
+import slash from "slash";
+import { v4 as uuidv4 } from "uuid";
+import type { Answers } from ".";
 
 function split(word: string): string[] {
   return word.split(/[-_\s]+/);
 }
 
 function space(word: string): string {
-  return split(trim(word)).join(' ');
+  return split(trim(word)).join(" ");
 }
-Handlebars.registerHelper('space', space);
+Handlebars.registerHelper("space", space);
 
 function trim(text: string) {
-  return text.replace(/[\r\n]/g, '');
+  return text.replace(/[\r\n]/g, "");
 }
-Handlebars.registerHelper('trim', trim);
+Handlebars.registerHelper("trim", trim);
 
 function upper(text: string) {
   return trim(text).toUpperCase();
 }
-Handlebars.registerHelper('upper', upper);
+Handlebars.registerHelper("upper", upper);
 
 function lower(text: string, options?: any) {
   const space = options && options.hash && options.hash.space;
   return trim(text).toLowerCase();
 }
-Handlebars.registerHelper('lower', lower);
+Handlebars.registerHelper("lower", lower);
 
 function capital(text: string, options?: any) {
   const space = options && options.hash && options.hash.space;
   return split(trim(text))
     .map((s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase())
-    .join(space ? ' ' : '');
+    .join(space ? " " : "");
 }
-Handlebars.registerHelper('capital', capital);
+Handlebars.registerHelper("capital", capital);
 
 function camel(text: string) {
   return capital(text).replace(/^./, (s) => s.toLowerCase());
 }
-Handlebars.registerHelper('camel', camel);
+Handlebars.registerHelper("camel", camel);
 
 function snake(text: string) {
   return capital(text)
-    .replace(/(?<=([a-z](?=[A-Z])|[A-Za-z](?=[0-9])))(?=[A-Z0-9])/g, '_')
+    .replace(/(?<=([a-z](?=[A-Z])|[A-Za-z](?=[0-9])))(?=[A-Z0-9])/g, "_")
     .toLowerCase();
 }
-Handlebars.registerHelper('snake', snake);
+Handlebars.registerHelper("snake", snake);
 
 function kebab(text: string) {
-  return snake(text).replace(/_/g, '-');
+  return snake(text).replace(/_/g, "-");
 }
-Handlebars.registerHelper('kebab', kebab);
+Handlebars.registerHelper("kebab", kebab);
 
 function uuid() {
   return uuidv4();
 }
-Handlebars.registerHelper('uuid', uuid);
+Handlebars.registerHelper("uuid", uuid);
 
 function format<T>(text: Buffer | string, view: T) {
   const template = Handlebars.compile(text.toString(), { noEscape: true });
@@ -75,7 +75,7 @@ function prepareDirectory(filePath: string) {
 }
 
 export function getAvailableTemplates(root: string) {
-  return fs.readdirSync(root).filter((d) => !d.startsWith('.'));
+  return fs.readdirSync(root).filter((d) => !d.startsWith("."));
 }
 
 export interface CopyConfig {
@@ -92,14 +92,14 @@ export async function copy(args: CopyConfig) {
     const targetPath = format(
       slash(path.resolve(args.targetDir, relativePath)),
       args.view
-    ).replace(new RegExp(`${sep}gitignore$`, 'g'), `${sep}.gitignore`); // https://github.com/uetchy/create-create-app/issues/38
+    ).replace(new RegExp(`${sep}gitignore$`, "g"), `${sep}.gitignore`); // https://github.com/uetchy/create-create-app/issues/38
     prepareDirectory(targetPath);
 
-    let sourceData = fs.readFileSync(sourceFile);
+    const sourceData = fs.readFileSync(sourceFile);
     let targetData = sourceData;
     if (isUtf8(sourceData)) {
       targetData = Buffer.from(format(sourceData, args.view));
     }
-    fs.writeFileSync(targetPath, targetData, 'utf-8');
+    fs.writeFileSync(targetPath, targetData, "utf-8");
   }
 }

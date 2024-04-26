@@ -1,7 +1,7 @@
 {
   "name": "create-create-x",
   "description": "Create your own `create-something` app. A fork of the awesome `create-create-app`",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Loïc Chen",
   "scripts": {
     "build": "npm run tsup -- --minify --dts",

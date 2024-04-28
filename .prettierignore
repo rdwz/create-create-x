@@ -1,0 +1,12 @@
+*.md
+*.yml
+*.toml
+*.css
+.prettierrc
+.editorconfig
+
+.github/
+.husky/
+
+website/
+templates/

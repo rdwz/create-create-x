@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Create Create X',
-  tagline: 'Set up a "create-something" project blazingly fast!',
+  tagline: 'Set up a 🛠️create-something" project blazingly fast!',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -100,10 +100,14 @@ const config: Config = {
               label: 'GitHub',
               href: 'https://github.com/painfulexistence/create-create-x',
             },
+            {
+              label: 'Twitter',
+              href: 'https://twitter.com/DevLucidum',
+            }
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} painfulexistence`,
+      copyright: `Copyright © ${new Date().getFullYear()} Loïc (painfulexistence)`,
     },
     prism: {
       theme: prismThemes.github,

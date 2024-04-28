@@ -5,8 +5,10 @@
   "author": "Loïc Chen",
   "scripts": {
     "build": "npm run tsup -- --minify --dts",
-    "clean": "shx rm -rf lib 'templates/*/{yarn.lock,package-lock.json,node_modules}'",
+    "clean": "shx rm -rf lib 'templates/*/{yarn.lock,package-lock.json,bun.lockb,node_modules}'",
     "dev": "npm run tsup -- --watch",
+    "website:dev": "cd website && npm run start",
+    "website:deploy": "cd website && npm run deploy",
     "prepublishOnly": "npm run clean && npm run build",
     "release": "release-it",
     "test": "run-p build typecheck && vitest --run",

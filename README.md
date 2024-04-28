@@ -1,6 +1,6 @@
 <div align="center">
 <h1 align="center">✨ Create Create X</h1>
-<h6>Create your own `create-something` app. A fork of the awesome `create-create-app`</h6>
+<h6>Create your own 🛠️create-something app. A fork of the awesome `create-create-app`</h6>
 <br/>
 <img src="https://raw.githubusercontent.com/painfulexistence/create-create-x/main/.github/assets/ss1.png" alt="screenshot"/>
 <br/><br/>
@@ -11,7 +11,6 @@
 
 ## Why?
 
-- ⚖️ **Built-in License selector** No need to worry about license things.
 - 🎩 **Template engine** You can use template strings in text files, file names, and folder names.
 - 💄 **Highly customizable** Can change caveat text, add extra command-line options.
 
